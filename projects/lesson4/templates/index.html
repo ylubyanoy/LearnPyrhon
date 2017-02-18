@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Данные о именах новорожденных</title>
+</head>
+<body>
+
+<p>Фильтр</p>
+<ul>
+	<li><a href="{{ url_for('index_filter', year='2015') }}">2015</a></li>
+	<li><a href="{{ url_for('index_filter', year='2016') }}">2016</a></li>
+</ul>
+<p>Данные о именах новорожденных</p>
+<table>
+    <tr>
+        <th>Год</th>
+        <th>Месяц</th>
+        <th>Имя</th>
+        <th>Количество новорожденных</th>
+    </tr>
+
+{% for name in names %}
+{% if year and year == name['Cells']['Year'] %}
+	<tr>
+		<td>{{ name['Cells']['Year'] }}</td>
+		<td>{{ name['Cells']['Month'] }}</td>
+		<td>{{ name['Cells']['Name'] }}</td>
+		<td>{{ name['Cells']['NumberOfPersons'] }}</td>
+	</tr>
+{% else %}
+	<tr>
+		<td>{{ name['Cells']['Year'] }}</td>
+		<td>{{ name['Cells']['Month'] }}</td>
+		<td>{{ name['Cells']['Name'] }}</td>
+		<td>{{ name['Cells']['NumberOfPersons'] }}</td>
+	</tr>
+{% endif %}
+{% endfor %}
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<ul class="list-group">
+    {% for article in articles %}
+    <li class="list-group-item">
+        <div class="list-group-item-heading list-group-item-info"><h3>{{ article.a_title }}</h3></div>
+        <div class="list-group-item-text">
+            <small>
+            {% if article.a_body_html %}
+                {{ article.a_body_html | safe }}
+            {% else %}
+                {{ article.a_body }}
+            {% endif %}
+            </small>
+        </div>
+        <div class="list-group-item list-group-item-info">
+            {% if current_user == article.username %}
+                <a href="{{ url_for('main.edit_article', article_id=article.article_id) }}">
+                    <span class="label label-primary">Edit</span>
+                </a>
+            {% endif %}
+            <span class="badge">{{ moment(article.a_timestamp).fromNow() }}</span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

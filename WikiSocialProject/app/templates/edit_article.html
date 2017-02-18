@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Редактирование статьи{% endblock %}
+
+{% block page_content %}
+    <div class="page-header">
+        <h1>Редактирование</h1>
+    </div>
+    <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!--Ввод статей-->
+                    {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}

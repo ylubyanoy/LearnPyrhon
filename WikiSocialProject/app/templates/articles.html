@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} Статьи {% endblock %}
+
+{% block page_content %}
+
+    <div class="page-header">
+        <h1>Список статей</h1>
+    </div>
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="collapse" data-target="#article_new">Написать статью</button>
+                <div id="article_new" class="collapse">
+                <!--Ввод статей-->
+                {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+            <!--Вывод статей-->
+            {% include '_articles.html' %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
